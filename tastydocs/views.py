@@ -53,6 +53,7 @@ def example_data(request, resource_name, api):
     tastyfactory = TastyFactory(api)
     resource_mockup = tastyfactory[resource_name]
 
+    # FIXME: this is EXTREMELY inefficient, takes ~10s on each request
     with test_db(verbosity=0):
         post_data = resource_mockup.create_post_data()
         get_data = resource_mockup.create_get_data()
